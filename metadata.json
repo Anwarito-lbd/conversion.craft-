@@ -1,0 +1,7 @@
+{
+  "name": "Copy of ConversionCraft",
+  "description": "The ultimate AI-powered e-commerce growth platform. Analyze competitors, find winning products, generate high-converting pages, and create viral video ads using Gemini and Veo.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
