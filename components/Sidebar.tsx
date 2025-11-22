@@ -50,15 +50,15 @@ const Sidebar: React.FC<SidebarProps> = ({ setView, isOpen, onClose }) => {
 
         <div className="p-4 border-t border-slate-800/60 bg-slate-950/50 space-y-1">
           <div className="mt-2 px-4 py-2 bg-slate-900 rounded-lg border border-slate-800 flex items-center gap-3">
-             <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <Bot size={16} />
-             </div>
-             <div>
-                <div className="text-xs font-bold text-white">Intel Engine</div>
-                <div className="text-xs text-slate-500 flex items-center gap-1">
-                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online
-                </div>
-             </div>
+            <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <Bot size={16} />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white">Intel Engine</div>
+              <div className="text-xs text-slate-500 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online
+              </div>
+            </div>
           </div>
         </div>
       </div>

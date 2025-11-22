@@ -1,45 +1,88 @@
+# ConversionCraft – War Room Intelligence Engine
 
-# ConversionCraft – War Room (Public Edition)
+> A standalone AI-powered competitor intelligence command center for e-commerce brands.  
+> Designed for deep market research, tactical analysis, and structured attack plans.
 
-**The ultimate AI-powered competitor intelligence engine.**
+---
 
-The War Room is a forensic tactical analysis tool designed for e-commerce entrepreneurs. It goes beyond basic SWOT analysis to provide actionable "Attack Plans," estimated traffic data, and creative counter-strategies.
+## 🔥 What is the War Room?
 
-## 🚀 Features
+The War Room is a high-accuracy competitor analysis engine that turns any store URL into a complete intelligence brief. It extracts:
 
-*   **Threat Radar**: Identify direct competitors and analyze their market positioning.
-*   **Forensic Traffic Intel**: Estimate competitor monthly visits, bounce rates, and ad spend.
-*   **Creative Intelligence**: Reverse-engineer ad hooks and generate AI "Counter-Hooks" to beat them.
-*   **Tactical Attack Plan**: A prioritized checklist of actions to capture market share.
-*   **SEO Battlefield**: Analyze organic vs. paid keyword strategies.
-*   **Social Footprint**: Track social media growth and engagement.
+- **Estimated Ad Spend**  
+- **Traffic Composition** (social / organic / paid / referral)  
+- **Creative Intelligence** (hooks, angles, counter-hooks)  
+- **Competitor Threat Radar** (direct rivals in the niche)  
+- **Recent Activity Feed** (new ads, viral posts, price changes)  
+- **Brand Visual DNA** (colour palette, design patterns)  
+- **Social Profiles** (TikTok, Instagram, Facebook, YouTube)  
+- **Tactical Attack Plan** (step-by-step strategy to outperform them)
 
-## 🛠️ Installation
+This repository contains **only** the War Room feature — clean, fast and production-ready.
 
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/conversioncraft-war-room.git
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  **Backend Setup (Crucial)**:
-    *   This app requires a backend proxy to handle AI requests securely.
-    *   Deploy the `api/analyze.ts` file to Vercel (It works automatically as an API Route).
-    *   **Set your `API_KEY` in your Vercel environment variables.**
-4.  **Frontend Setup**:
-    *   Run the frontend:
-    ```bash
-    npm run dev
-    ```
+---
 
-## 🛡️ API Security
+## 🧰 Features
 
-This public edition is architected for security.
-*   **No Client-Side Keys**: The frontend (`CompetitorIntel.tsx`) contains **zero** API keys or sensitive logic.
-*   **Proxy Architecture**: All analysis requests are routed through the secure backend (`api/analyze.ts`), ensuring your credentials remain private.
+### 🎯 Competitor Analysis  
+Paste a URL → instantly receive deep intelligence.
 
-## ⚠️ Disclaimer
+### ⚔️ Tactical Attack Plan  
+AI generates a prioritised list of actions to outperform the competitor.
 
-This is a restricted public release focusing solely on the War Room module. Other modules (Product Finder, Auto-Pilot, Creative Studio) are disabled in this version.
+### 🛰️ Threat Radar  
+Identifies 3–5 direct competitors and rates their risk level.
+
+### 🔎 Creative Intelligence  
+Extracts competitor hooks, frameworks and generates counter-hooks.
+
+### 📰 Competitor Feed  
+Tracks new ads, social activity and viral spikes.
+
+### 💡 Ideas Panel  
+Save insights and prompts permanently using the right-side Ideas panel.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Configure environment variables
+
+Create a .env.local file:
+
+```
+INTELLIGENCE_API_KEY=your_api_key_here
+```
+for better use of the app, use a paid API key. (e.g. OpenAi, Gemini, Claude)
+(Replace intelligenceService.ts stub with a production implementation that reads INTELLIGENCE_API_KEY.)
+
+### 4. Run the app
+
+```bash
+npm run dev
+```
+
+Visit http://localhost:5173 and the app will open directly into the War Room.
+
+
+🏆 Why this repo exists
+
+This is the refined, stripped‑down version of ConversionCraft — rebuilt to be a focused, high-power intelligence engine for dropshipping and e‑commerce entrepreneurs.  
+No clutter. No onboarding. No unnecessary modules.  
+Just pure competitor intelligence.
+

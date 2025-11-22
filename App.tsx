@@ -7,14 +7,13 @@ import { Menu } from 'lucide-react';
 
 const App: React.FC = () => {
   // Force view to Competitor Intel for Public Release
-  const [currentView, setView] = useState<AppView>(AppView.COMPETITOR_INTEL);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="flex h-screen bg-[#020617] text-slate-100 font-sans overflow-hidden relative">
       <Sidebar 
-        currentView={currentView} 
-        setView={setView} 
+        currentView={AppView.COMPETITOR_INTEL} 
+        setView={() => {}} 
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         businessModel={null}

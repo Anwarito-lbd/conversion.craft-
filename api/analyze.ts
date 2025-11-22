@@ -1,5 +1,6 @@
 
-import { GoogleGenAI } from "@google/genai";
+
+import { GoogleGenAI as IntelligenceClient } from "@google/genai";
 
 export const config = {
   runtime: 'edge',
@@ -17,12 +18,12 @@ export default async function handler(request: Request) {
       return new Response(JSON.stringify({ error: "URL is required" }), { status: 400 });
     }
 
-    const apiKey = process.env.API_KEY;
+    const apiKey = process.env.INTELLIGENCE_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: "Server misconfiguration" }), { status: 500 });
     }
 
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = new IntelligenceClient({ apiKey });
 
     const prompt = `Analyze the e-commerce brand or service at this URL: ${url}. 
       
@@ -87,7 +88,7 @@ export default async function handler(request: Request) {
       model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
-        tools: [{ googleSearch: {} }], 
+        tools: [{ googleSearch: {} }],
       }
     });
 
@@ -95,7 +96,7 @@ export default async function handler(request: Request) {
     // Robust JSON extraction
     const match = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
     const jsonText = match ? match[1] : text;
-    
+
     return new Response(jsonText, {
       headers: { "Content-Type": "application/json" },
     });
