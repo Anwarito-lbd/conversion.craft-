@@ -1,7 +1,9 @@
 fastapi
 uvicorn
-prisma
-apify-client
-google-generativeai
-replicate
+python-multipart
 requests
+google-generativeai
+apify-client
+replicate
+prisma
+python-dotenv
