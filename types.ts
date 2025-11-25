@@ -1,145 +1,289 @@
 
-export enum AppView {
-  COMPETITOR_INTEL = 'COMPETITOR_INTEL',
-}
 
 export enum BusinessModel {
   DROPSHIPPING = 'DROPSHIPPING',
   DROPSERVICING = 'DROPSERVICING'
 }
 
-export interface TrafficIntel {
-  monthlyVisits: string;
-  bounceRate: string;
-  avgDuration: string;
-  topCountry: string;
-  estAdSpend: string;
-  trafficSources: { source: string; percent: number }[];
+export enum AppView {
+  DASHBOARD = 'DASHBOARD',
+  WAR_ROOM = 'WAR_ROOM', // Legacy map to Competitor Intel
+  COMPETITOR_INTEL = 'COMPETITOR_INTEL',
+  PRODUCT_RESEARCH = 'PRODUCT_RESEARCH', // Merged View
+  PAGE_BUILDER = 'PAGE_BUILDER',
+  CREATIVE_STUDIO = 'CREATIVE_STUDIO',
+  AUTO_PILOT = 'AUTO_PILOT',
+  SETTINGS = 'SETTINGS'
 }
 
-export interface AttackAction {
-  tactic: string;
-  action: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  impact: 'High' | 'Critical';
+export enum ProjectPhase {
+  IDEATION = 'IDEATION',
+  MARKET_INTEL = 'MARKET_INTEL',
+  SOURCING = 'SOURCING',
+  CREATION = 'CREATION',
+  LAUNCH = 'LAUNCH'
 }
 
-export interface CompetitorActivity {
-  date: string; // e.g., "2 days ago"
-  type: 'AD_LAUNCH' | 'PRICE_CHANGE' | 'VIRAL_SPIKE' | 'SOCIAL_POST';
+export interface ProjectState {
+  isInitialized: boolean;
+  model: BusinessModel | null;
+  hasProduct: boolean;
+  productName?: string;
+  niche?: string;
+  competitorsIdentified: boolean;
+  competitorUrls: string[];
+  currentMissionPhase: 'INTEL' | 'SUPPLY' | 'ASSAULT';
+}
+
+export interface WinningProduct {
+  id: string;
+  name: string;
   description: string;
-  impactLevel: 'LOW' | 'MEDIUM' | 'HIGH';
+  category: string;
+  productImages: string[];
+  price: number;
+  cost: number;
+  profit: number;
+  roi: number;
+  saturation: number;
+  competition: number;
+  viralScore: number;
+  shopifyStoreCount: number;
+  salesData: { day: string; value: number }[];
+  winningReason: string;
+  marketPotential: string;
+  benefits: string[];
+  angles: string[];
+  aliExpressSignals: string[];
+  amazonSignals: string[];
+  tiktokSignals: string[];
+  suppliers: {
+    name: string;
+    link: string;
+    price: number;
+    shipping: string;
+    moq: string;
+    rating: number;
+  }[];
 }
 
-export interface DirectCompetitor {
+export interface SupplierV2 {
+  id: string;
   name: string;
   url: string;
-  threatLevel: 'High' | 'Medium' | 'Low';
-  primaryAdvantage: string; // e.g. "Lower Price", "Better Branding"
+  price: string;
+  rating: number;
+  moq: string;
+  productImages: string[];
+  verifiedSeller: boolean;
+  warehouseLocations: string[];
+  shippingTimeEstimated: string;
+  orderVolumeHistory: number[];
+  priceStability: "High" | "Medium" | "Low";
+  negotiationTips: string[];
+  privateLabelPotential: string;
+  supplyChainRiskScore: number;
+  reliabilityScore: number;
+  returnPolicy: string;
+  productMatchConfidence: number;
+}
+
+export interface ArbitrageOpportunity {
+  id: string;
+  productName: string;
+  sourcePrice: number;
+  targetPrice: number;
+  margin: number;
+  platform: "Amazon" | "TikTok Shop" | "Walmart";
+  confidenceScore: number;
+  sourceUrl: string;
 }
 
 export interface CompetitorAnalysis {
   viralScore: number;
   viralReasoning: string;
-  trafficIntel: TrafficIntel;
-  attackPlan: AttackAction[];
-  swot: {
-    strengths: string[];
-    weaknesses: string[];
-    opportunities: string[];
-    threats: string[];
+  trafficIntel: {
+     monthlyVisits: string;
+     bounceRate: string;
+     avgDuration: string;
+     topCountry: string;
+     estAdSpend: string;
+     trafficSources: { source: string; percent: number }[];
   };
-  recentActivity: CompetitorActivity[];
-  directCompetitors: DirectCompetitor[]; // New field for "Other Threats"
-  adHooks: string[];
-  marketingChannels: {
-    channel: string;
-    percentage: number;
-    insight: string;
-  }[];
-  priorityChannels: {
-    channel: string;
-    rationale: string;
-  }[];
-  demographics: {
-    ageRange: string;
-    gender: string;
-    topInterests: string[];
-    locations: string[];
-  };
+  socialLinks: { platform: string; url: string; followers: string }[];
+  directCompetitors: { name: string; url: string; threatLevel: "High" | "Medium" | "Low"; primaryAdvantage: string }[];
+  attackPlan: { tactic: string; action: string; difficulty: "Easy"|"Medium"|"Hard"; impact: "High"|"Critical" }[];
+  recentActivity: { date: string; type: "AD_LAUNCH"|"PRICE_CHANGE"|"VIRAL_SPIKE"|"SOCIAL_POST"; description: string; impactLevel: "LOW"|"MEDIUM"|"HIGH" }[];
   seoStrategy: {
     topKeywords: string[];
     paidSearchTerms: string[];
     keywordStrategySummary: string;
   };
-  categoryTrends: {
-    keyword: string;
-    growth: number;
-    volume: number;
-  }[];
-  keyInfluencers: {
-    name: string;
-    platform: string;
-    reach: string;
-    engagement: string;
-  }[];
-  influencerSummary: string[];
-  videoAds: {
-    thumbnail: string;
-    hook: string;
+  videoAds: { 
+    thumbnail: string; 
+    hook: string; 
     strategy: string;
-    counterHook: string; // New field for attack strategy
+    counterHook: string; 
   }[];
-  adStrategySummary: string[];
-  funnelAnalysis: {
-    step: string;
-    frictionPoints: string[];
-    conversionRateEst: string;
-  }[];
-  croRecommendations: string[];
-  offerAnalysis: {
-    pricingModel: string;
-    bundles: string[];
-    guarantees: string;
-    strategyInsight: string;
-  };
-  sentimentAnalysis: {
-    sentimentScore: number; // 0-100 based on positive/negative ratio
-    positiveHighlights: string[];
-    negativeHighlights: string[];
-    commonPhrases: string[];
-  };
   brandIdentity: {
-    voice: string;
-    visualStyle: string;
-    keyThemes: string[];
-    brandColors: string[]; // Estimated hex codes or color names
+      voice: string;
+      visualStyle: string;
+      keyThemes: string[];
+      brandColors: string[];
   };
-  socialLinks: {
-    platform: 'TikTok' | 'Instagram' | 'Facebook' | 'YouTube' | 'Twitter';
-    url: string;
-    followers: string;
-  }[];
+  swot?: {
+    strengths: string[];
+    weaknesses: string[];
+    opportunities: string[];
+    threats: string[];
+  };
+  adHooks?: string[];
+}
+
+export interface AdScript {
+  hook: string;
+  body: string;
+  visualCue: string;
+  cta: string;
+}
+
+export interface AdMutation {
+  id: string;
+  variantName: string;
+  hook: string;
+  visualStyle: string;
+  predictedCTR: number;
+  status: string;
+}
+
+export interface SocialPost {
+  platform: string;
+  caption: string;
+  hashtags: string[];
+}
+
+export interface CustomerReview {
+  id: string;
+  author: string;
+  rating: number;
+  content: string;
+  date: string;
+  verified: boolean;
+}
+
+export interface LandingPageData {
+  productName: string;
+  headline: string;
+  subheadline: string;
+  features: string[];
+  description: string;
+  callToAction: string;
+  seoTitle: string;
+  seoMeta: string;
+  visualDescription: string;
+  price?: string;
+  currency?: string;
+  reviews: CustomerReview[];
+  mockupImages: string[];
+  professionalImages: string[];
+  templateName: string;
+  is360Available?: boolean;
+  rotationImages?: string[];
+}
+
+export interface AutoPilotResult {
+  product: WinningProduct;
+  suppliers: any[]; // Simplified for brevity in this context
+  landingPage: LandingPageData;
+  adScript: AdScript;
+  marketingImage: string;
+  comfyUiWorkflow: any;
+  optimizationPlan: string;
+}
+
+export type VideoArchetype = 'AI_INFLUENCER' | 'ASMR_UNBOXING' | 'GREEN_SCREEN' | 'CINEMATIC_DEMO';
+
+export enum MarketingStrategy {
+  ORGANIC_VIRAL = 'ORGANIC_VIRAL',
+  PAID_SCALING = 'PAID_SCALING'
+}
+
+export interface ConnectedAccount {
+  platform: string;
+  username: string;
+  isConnected: boolean;
+  followers: string;
+}
+
+export interface UserState {
+  onboardingComplete: boolean;
+  businessModel: BusinessModel | null;
+  hasItem: boolean;
+  currentItemName: string;
+  currentReferenceUrl: string;
+  currentPhase: ProjectPhase;
+  completedSteps: string[];
 }
 
 export interface IdeaItem {
   id: string;
   title: string;
   snippet: string;
-  module: 'WarRoom' | 'ProductFinder' | 'PageBuilder' | 'General';
-  date: string; // ISO string
-  data?: any; // Store specific data like competitor analysis or product details
-  isPinned?: boolean;
+  module: string;
   link?: string;
+  data?: any;
+  date: string;
+  isPinned?: boolean;
 }
 
-declare global {
-  interface AIStudio {
-    hasSelectedApiKey: () => Promise<boolean>;
-    openSelectKey: () => Promise<void>;
-  }
+export interface Supplier {
+  name: string;
+  url: string;
+  price: string | number;
+  notes?: string;
+  shippingTime?: string;
+  moq?: string;
+  rating?: number;
+  isVerified?: boolean;
+  location?: string;
+}
 
-  interface Window {
-    aistudio?: AIStudio;
-  }
+export interface BillingPlan {
+  id: string;
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  isPopular?: boolean;
+}
+
+export interface MarketSimulationResult {
+  productName: string;
+  pricePoint: number;
+  agentsSimulated: number;
+  predictedCVR: number;
+  predictedROAS: number;
+  audienceBreakdown: { segment: string; conversionRate: number; objection: string }[];
+  salesHeatmap: { hour: number; sales: number }[];
+  verdict: string;
+}
+
+export interface TrendGenesisResult {
+  trendName: string;
+  predictionDate: string;
+  confidenceScore: number;
+  aestheticKeywords: string[];
+  originSignal: string;
+  growthTrajectory: { week: string; score: number }[];
+  description: string;
+}
+
+export interface CompetitorReport {
+  url: string;
+  viralScore: number;
+  adFatigue: string;
+  shippingModel: string;
+  estimatedRevenue: string;
+  weaknesses: string[];
+  counterHooks: string[];
 }
